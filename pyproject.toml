@@ -1,0 +1,21 @@
+[project]
+name = "eaxy"
+version = "0.1.0"
+description = "Easy EXSY analysis: Fit EXSY NMR intensity ratios to extract exchange rates."
+authors = [
+    { name = "darianyang" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "scipy"
+]
+
+
+[project.scripts]
+eaxy = "eaxy.fit:main"
+
+[tool.setuptools]
+packages = ["eaxy"]

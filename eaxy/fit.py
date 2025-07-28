@@ -96,13 +96,14 @@ def plot_fit(times, ratios, yerr, fit_params, output_prefix):
     # Plot fitted curve
     x_fit = np.linspace(0, max(times)*1.1, 500)
     y_fit = calc_iratio(x_fit, *fit_params)
-    ax.plot(x_fit, y_fit, "--", color="tab:blue")
+    # use first color from the current style cycle to match with errorbar
+    ax.plot(x_fit, y_fit, "--", color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
 
     ax.set(xlabel="t(m): Mixing Time (ms)", ylabel="I$_{12}$/I$_{11}$")
     fig.tight_layout()
 
     # Save PDF only
-    pdf_file = f"{output_prefix}_fit.pdf"
+    pdf_file = f"{output_prefix}.pdf"
     fig.savefig(pdf_file)
     print(f"Saved plot to: {pdf_file}")
     plt.show()
@@ -120,14 +121,16 @@ def load_data(input_file):
 def main():
     parser = argparse.ArgumentParser(description="Fit EXSY intensity ratios to extract exchange rates.")
     parser.add_argument("input", help="Text file with columns: mixing_time(ms) I12/I11 [I12/I11_err]")
-    parser.add_argument("-o", "--output", default="exsy", help="Prefix for output PDF file")
+    parser.add_argument("-o", "--output", default="fit", help="Prefix for output PDF file")
     parser.add_argument("--style", help="Matplotlib .mplstyle file to use for plotting")
 
     args = parser.parse_args()
 
     if args.style:
-        if os.path.exists(args.style):
+        try:
             plt.style.use(args.style)
+        except Exception as e:
+            print(f"Error loading style file '{args.style}': {e} \n:using default style:")
 
     if not os.path.exists(args.input):
         print(f"Error: File '{args.input}' not found.")
