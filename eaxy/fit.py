@@ -121,7 +121,7 @@ def load_data(input_file):
 def main():
     parser = argparse.ArgumentParser(description="Fit EXSY intensity ratios to extract exchange rates.")
     parser.add_argument("input", help="Text file with columns: mixing_time(ms) I12/I11 [I12/I11_err]")
-    parser.add_argument("-o", "--output", default="fit", help="Prefix for output PDF file")
+    parser.add_argument("-o", "--output", default="fit.pdf", help="Name of the output plot file")
     parser.add_argument("--style", help="Matplotlib .mplstyle file to use for plotting")
 
     args = parser.parse_args()
