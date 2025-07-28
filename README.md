@@ -1,0 +1,2 @@
+# eaxy
+Easy EXSY analysis
