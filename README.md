@@ -14,17 +14,29 @@ Easy EXSY analysis
 - Supports error bars in input data
 - Customizable matplotlib style
 
-## Requirements
+## Requirements and installation
 
 - Python 3
 - numpy
 - matplotlib
 - scipy
 
-You can install eaxy and its dependencies directly with pip:
+To install `eaxy`, start from the command line; first clone this repository and move into the cloned repo:
+```sh
+git clone https://github.com/darianyang/eaxy.git
+cd eaxy
+```
 
+Assuming that you have Python already installed, you can then install `eaxy` and its dependencies directly with `pip`:
 ```sh
 pip install .
+```
+
+All done! Now you can use the `eaxy` command within the Python env that you just installed into.
+
+You can test that things are working by running the following from within the `eaxy` directory that you just changed into.
+```sh
+eaxy iratios.txt --style eaxy.mplstyle -o test_plot.pdf
 ```
 
 ## Usage
@@ -51,6 +63,8 @@ You can run eaxy from the command line after installation by using the `eaxy` co
 ```sh
 eaxy iratios.txt
 ```
+
+## More usage options
 
 To see available arguments:
 ```sh
